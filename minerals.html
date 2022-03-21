@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div id="contenedor">
+            <ul id="minerals"></ul>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        (function() {
+            $.getJSON("http://localhost:8080/m4/minerals/minerals.php?tots")
+                .done(function(data) {
+                    console.log(data);
+                    for(var i=0; i<data.length; i++) {
+                        
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>
