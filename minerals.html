@@ -15,7 +15,7 @@
                 .done(function(data) {
                     console.log(data);
                     for(var i=0; i<data.length; i++) {
-                        
+                        $("#minerals").append(`<li onclick="myFunction(${i})"><a href="${data[i].nom}"${data[i].nom}</a></li>`);
                     }
                 });
             })();
