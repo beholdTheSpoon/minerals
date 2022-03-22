@@ -18,7 +18,11 @@
                     for(var i=0; i<data.length; i++) {
                         var nom = data[i].nom;
                         var id = data[i].id;
+                        function hideMineral(x) {
+                                x.cssText = "display: none;"
+                            }
                         $("#minerals").append(`<li id="${id}" onmouseover="showMineral(this)" onmouseout="hideMineral(this)" onclick="getMineral(${id})"><a href="#${id}">`+nom+`</a></li>`);
+                        
                     }
                 });
             })();
