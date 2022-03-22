@@ -10,19 +10,24 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
-        function displayId(data, id) {
-            console.log(data[id]);
-            console.log(id);
-        }
+        
         (function() {
             $.getJSON("http://localhost:8080/m4/minerals/minerals.php?tots")
                 .done(function(data) {
                     console.log(data);
                     for(var i=0; i<data.length; i++) {
-                        $("#minerals").append(`<li onclick="displayId(${data}, ${i})"><a href="${data[i].nom}">${data[i].nom}</a></li>`);
+                        var nom = data[i].nom;
+                        var id = data[i].id;
+                        $("#minerals").append(`<li onclick="displayId(${id}, ${nom})"><a href="#">${nom}</a></li>`);
                     }
                 });
             })();
+
+            function displayId(nom) {
+                var opened = window.open("");
+                opened.document.write(`<html><head><title>`+nom+`</title></head><body>`+nom+`</body></html>`);
+            }
+
         </script>
     </body>
 </html>
