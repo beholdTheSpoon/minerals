@@ -18,14 +18,44 @@
                     for(var i=0; i<data.length; i++) {
                         var nom = data[i].nom;
                         var id = data[i].id;
-                        $("#minerals").append(`<li onclick="displayId(${id}, ${nom})"><a href="#">${nom}</a></li>`);
+                        $("#minerals").append(`<li onclick="getMineral(`+id+`)"><a href="#">`+nom+`</a></li>`);
                     }
                 });
             })();
+ 
+            function getMineral(id) {
+                $.getJSON(`http://localhost:8080/m4/minerals/minerals.php?id=`+id)
+                    .done(function(mineral) {
+                        console.log(mineral);
+                        for(var i=0; i<mineral.length; i++) {
+                            var min = mineral[i];
+                            var color = min.color;
+                            var composicio = min.composicio;
+                            var densitat = min.densitat;
+                            var duressa = min.duressa;
+                            var foto = min.foto;
+                            var grup = min.grup;
+                            var nom = min.nom;
 
-            function displayId(nom) {
-                var opened = window.open("");
-                opened.document.write(`<html><head><title>`+nom+`</title></head><body>`+nom+`</body></html>`);
+                        }
+                        var opened = window.open("");
+                        opened.document.write(`
+                        <html>
+                            <head>
+                                <title>`+nom+`</title>
+                            </head>
+
+                            <body>
+                                ${nom}<br>
+                                ${grup}
+                                ${duressa}<br>
+                                ${densitat}<br>
+                                ${composicio}<br>
+                                ${color}<br>
+                                <img src="${foto}">     
+                            </body>
+                        </html>`);
+                });
             }
 
         </script>
