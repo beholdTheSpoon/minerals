@@ -19,7 +19,7 @@
                 .done(function(data) {
                     console.log(data);
                     for(var i=0; i<data.length; i++) {
-                        $("#minerals").append(`<li onclick="displayId(${data})"><a href="${data[i].nom}">${data[i].nom}</a></li>`);
+                        $("#minerals").append(`<li onclick="displayId(${data}, ${i})"><a href="${data[i].nom}">${data[i].nom}</a></li>`);
                     }
                 });
             })();
