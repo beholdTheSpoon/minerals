@@ -18,7 +18,7 @@
                     for(var i=0; i<data.length; i++) {
                         var nom = data[i].nom;
                         var id = data[i].id;
-                        $("#minerals").append(`<li onclick="getMineral(`+id+`)"><a href="#">`+nom+`</a></li>`);
+                        $("#minerals").append(`<li id="${id}" onmouseover="showMineral(this)" onmouseout="hideMineral(this)" onclick="getMineral(${id})"><a href="#${id}">`+nom+`</a></li>`);
                     }
                 });
             })();
@@ -36,8 +36,23 @@
                             var foto = min.foto;
                             var grup = min.grup;
                             var nom = min.nom;
-
+                            function showMineral(x) {
+                                $(x).append(`
+                                    <div id="contenedor${id}" class="contenedor" style="z-index: 100;">
+                                        <h1>${nom}</h1><br>
+                                        <p>
+                                            Grup: ${grup}<br>
+                                            Duressa: ${duressa}<br>
+                                            Densitat: ${densitat}<br>
+                                            Composicio: ${composicio}<br>
+                                            Color: ${color}
+                                        </p><br>
+                                        <img src="${foto}"> 
+                                    </div>
+                                `);
+                            }
                         }
+
                         var opened = window.open("");
                         opened.document.write(`
                         <html>
@@ -46,18 +61,19 @@
                             </head>
 
                             <body>
-                                ${nom}<br>
-                                ${grup}
-                                ${duressa}<br>
-                                ${densitat}<br>
-                                ${composicio}<br>
-                                ${color}<br>
+                                <h1>${nom}</h1><br>
+                                <p>
+                                    Grup: ${grup}<br>
+                                    Duressa: ${duressa}<br>
+                                    Densitat: ${densitat}<br>
+                                    Composicio: ${composicio}<br>
+                                    Color: ${color}
+                                </p><br>
                                 <img src="${foto}">     
                             </body>
                         </html>`);
                 });
             }
-
         </script>
     </body>
 </html>
